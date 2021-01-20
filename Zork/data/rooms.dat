@@ -1,9 +1,99 @@
 Room Name: Room 1
-Room Description:  This is room<br>1
-Exit Rooms: E-Room 2
+Room Description:  This is room 1
+Exit Rooms: S-Room 2
+locked: false
+
 Room Name: Room 2
 Room Description:  This is Room 2
-Exit Rooms: W-Room 1, U-Room 3
+Exit Rooms: S-Room 3
+locked: true
+
 Room Name: Room 3
-Room Description:  You are upstairs.
-Exit Rooms: D-Room 2
+Room Description:  This is Room 3
+Exit Rooms: S-Room 4
+locked: true
+
+Room Name: Room 4
+Room Description:  This is Room 4
+Exit Rooms: S-Room 5
+locked: true
+
+Room Name: Room 5
+Room Description:  This is Room 5
+Exit Rooms: S-Room 6
+locked: true
+
+Room Name: Room 6
+Room Description:  This is Room 6
+Exit Rooms: S-Room 7
+locked: true
+
+Room Name: Room 7
+Room Description:  This is Room 7
+Exit Rooms: S-Room 8
+locked: true
+
+Room Name: Room 8
+Room Description:  This is Room 8
+Exit Rooms: S-Room 9
+locked: true
+
+Room Name: Room 9
+Room Description:  This is Room 9
+Exit Rooms: S-Room 10
+locked: true
+
+Room Name: Room 10
+Room Description:  This is Room 10
+Exit Rooms: S-Room 11
+locked: true
+
+Room Name: Room 11
+Room Description:  This is Room 11
+Exit Rooms: S-Room 12
+locked: true
+
+Room Name: Room 12
+Room Description:  This is Room 12
+Exit Rooms: S-Room 13
+locked: true
+
+Room Name: Room 13
+Room Description:  This is Room 13
+Exit Rooms: S-Room 14
+locked: true
+
+Room Name: Room 14
+Room Description:  This is Room 14
+Exit Rooms: S-Room 15
+locked: true
+
+Room Name: Room 15
+Room Description:  This is Room 15
+Exit Rooms: S-Room 16
+locked: true
+
+Room Name: Room 16
+Room Description:  This is Room 16
+Exit Rooms: S-Room 17
+locked: true
+
+Room Name: Room 17
+Room Description:  This is Room 17
+Exit Rooms: S-Room 18
+locked: true
+
+Room Name: Room 18
+Room Description:  This is Room 18
+Exit Rooms: S-Room 19
+locked: true
+
+Room Name: Room 19
+Room Description:  This is Room 19
+Exit Rooms: S-Room 20
+locked: true
+
+Room Name: Room 20
+Room Description:  This is Room 20
+Exit Rooms: S-Room 1
+locked: true

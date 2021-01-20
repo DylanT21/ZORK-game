@@ -22,6 +22,7 @@ import java.util.Scanner;
 public class Game {
   private Parser parser;
   private Room currentRoom;
+  private Inventory inventory;
   // This is a MASTER object that contains all of the rooms and is easily
   // accessible.
   // The key will be the name of the room -> no spaces (Use all caps and
@@ -88,8 +89,12 @@ public class Game {
     try {
       initRooms("data/rooms.dat");
       currentRoom = masterRoomMap.get("ROOM_1");
+      inventory = new Inventory();
+
+
+
+      currentRoom.getInventory().addItem(new Item("key", "A 3 point key"));
     } catch (Exception e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
     parser = new Parser();
@@ -117,7 +122,7 @@ public class Game {
   private void printWelcome() {
     System.out.println();
     System.out.println("Welcome to Zork!");
-    System.out.println("Zork is a new, incredibly boring adventure game.");
+    System.out.println("Zork is esacape room where you need to find your way out using the things you see in the rooms");
     System.out.println("Type 'help' if you need help.");
     System.out.println();
     System.out.println(currentRoom.longDescription());
@@ -141,11 +146,96 @@ public class Game {
       if (command.hasSecondWord())
         System.out.println("Quit what?");
       else
+    
         return true; // signal that we want to quit
     } else if (commandWord.equals("eat")) {
-      System.out.println("Do you really think you should be eating at a time like this?");
+      eat();
+
+    } else if (commandWord.equals("sit")) {
+      sit();
+
+    } else if (commandWord.equals("jump")) {
+      jump();
+
+    } else if (commandWord.equals("viewroom")) {
+      viewroom();
+
+    } else if (commandWord.equals("dropItem")) {
+      dropItem(commandWord);
+
+    } else if ("udeswn".indexOf(commandWord) > -1) {
+      goRoom(command);
+    } else if (commandWord.equals("take")) {
+      if (command.hasSecondWord())
+       System.out.println("Take what?");
+    else
+        takeItem(command.getSecondWord());
+
     }
+  else if (commandWord.equals("drop")) {
+    if (command.hasSecondWord())
+     System.out.println("drop what?");
+  else
+      takeItem(command.getSecondWord());
+
+  }else if (commandWord.equals("i")) {
+    System.out.println("you are carrying the following" +  inventory);
+  }
+    
     return false;
+  }
+
+  private void takeItem(String itemName) {
+    Inventory temp = currentRoom.getInventory();
+
+
+    Item item = temp.removeItem(itemName);
+
+    if (item != null) {
+      if (inventory.addItem(item)) {
+        System.out.println("you have taken the " + itemName);
+      }else {
+        System.out.println("you were not able to take the " + itemName);
+      }
+    }else {
+      System.out.println("there is no " + itemName + "here.");
+    }
+
+  }
+
+  private void dropItem(String itemName) {
+
+    Item item = inventory.removeItem(itemName);
+
+    if (item != null) {
+      if (currentRoom.addItem(item)) {
+        System.out.println("you have dropped the " + itemName);
+      }else {
+        System.out.println("you were not able to drop the " + itemName);
+      }
+    }else {
+      System.out.println("you are not carrieng the " + itemName + ".");
+    }
+
+  }
+
+  private void eat() {
+    System.out.println("YUMMY");
+
+  }
+
+  private void viewroom() {
+    System.out.println("YUMMY" + currentRoom);
+
+  }
+
+  private void sit() {
+    System.out.println("You are sitting now. You are a lazy exuse for a person");
+  }
+
+  private void jump() {
+    System.out.println("you just jumped you feel better");
+
   }
 
   // implementations of user commands:
@@ -172,6 +262,22 @@ public class Game {
       return;
     }
     String direction = command.getSecondWord();
+    if ("udeswn".indexOf(command.getCommandWord()) > -1) {
+      direction = command.getCommandWord();
+      if (direction.equals("u"))
+      direction = "up";
+      else if (direction.equals("d"))
+      direction = "down";
+      else if (direction.equals("e"))
+      direction = "east";
+      else if (direction.equals("w"))
+      direction = "west";
+      else if (direction.equals("n"))
+      direction = "north";
+      else if (direction.equals("s"))
+      direction = "south";
+
+    }
     // Try to leave current room.
     Room nextRoom = currentRoom.nextRoom(direction);
     if (nextRoom == null)
